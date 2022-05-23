@@ -1,44 +1,11 @@
-# LoL Human Telegram Bot
+<p align="center">
+  <img src="https://c.tenor.com/Fk5_A6FYc5AAAAAC/date-a-live-kurumi-tokisaki.gif" width="570" height="450"/>
+</p>
+<h2 align="center">
+  <b>Kurumi Bot ✨</b>
+</h2>
 
-# Installation
 
-## Windows
-* [`Download Node JS`](https://nodejs.org/en/download/)
-* [`Download Git`](https://git-scm.com/download/win)
+### All credits
 
-
-## Cloning this repo
-```cmd
-> git clone https://github.com/LoL-Human/TelegramBot-NodeJS
-> cd TelegramBot-NodeJS
-```
-
-## Install the package
-```cmd
-> npm i
-```
-
-## Edit config file
-Edit the required value in `config.json`. You can get the apikey at [`LoL Human Rest API`](http://api.lolhuman.xyz/). And get bot token at [`@BotFather`](http://t.me/BotFather).
-```json
-{
-    "apikey": "",
-    "bot_token": "",
-    "owner": "LoL Human",
-    "ownerLink": "https://t.me/LoLHumen",
-    "version": "1.0.0",
-    "prefix": "/"
-}
-```
-
-## Run the bot
-```cmd
-> npm start
-```
-
-## Note:
-* You can request a case in my [`WhatsApp`](http://wa.me/62895418200111).
-
-# Thanks To
-* [`Telegraf`](https://github.com/telegraf/telegraf)
-* [`Pais`](https://github.com/Paiiss)
+* [GhostJs](wa.me/558181718175)

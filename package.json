@@ -1,7 +1,7 @@
 {
-    "name": "telegram-bot",
+    "name": "KurumiAssistent",
     "version": "1.0.0",
-    "description": "A simple telegram bot build with node js",
+    "description": "Uma construção simples de bot de telegrama com node js",
     "main": "index.js",
     "directories": {
         "lib": "lib"
@@ -25,7 +25,7 @@
         "bot",
         "telegram-bot"
     ],
-    "author": "LoL Human",
+    "author": "Ghost js",
     "license": "ISC",
     "bugs": {
         "url": "https://github.com/LoL-Human/TelegramBot-NodeJS/issues"

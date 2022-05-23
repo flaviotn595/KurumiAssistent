@@ -75,100 +75,25 @@ bot.on("message", async(lol) => {
                 user = await tele.getUser(lol)
                 await help.help(lol, user.full_name)
                 break
-                // Islami //
-            case 'listsurah':
-                result = await fetchJson(`http://api.lolhuman.xyz/api/quran?apikey=${apikey}`)
-                result = result.result
-                text = 'List Surah:\n'
-                for (var x in result) {
-                    text += `${x}. ${result[x]}\n`
-                }
-                await reply(text)
-                break
-            case 'alquran':
-                if (args.length < 1) return reply(`Example: ${prefix + command} 18 or ${prefix + command} 18/10 or ${prefix + command} 18/1-10`)
-                urls = `http://api.lolhuman.xyz/api/quran/${args[0]}?apikey=${apikey}`
-                quran = await fetchJson(urls)
-                result = quran.result
-                ayat = result.ayat
-                text = `QS. ${result.surah} : 1-${ayat.length}\n\n`
-                for (var x of ayat) {
-                    arab = x.arab
-                    nomor = x.ayat
-                    latin = x.latin
-                    indo = x.indonesia
-                    text += `${arab}\n${nomor}. ${latin}\n${indo}\n\n`
-                }
-                text = text.replace(/<u>/g, "").replace(/<\/u>/g, "")
-                text = text.replace(/<strong>/g, "").replace(/<\/strong>/g, "")
-                text = text.replace(/<u>/g, "").replace(/<\/u>/g, "")
-                await reply(text)
-                break
-            case 'alquranaudio':
-                if (args.length == 0) return reply(`Example: ${prefix + command} 18 or ${prefix + command} 18/10`)
-                surah = args[0]
-                await lol.replyWithAudio({ url: `http://api.lolhuman.xyz/api/quran/audio/${surah}?apikey=${apikey}` })
-                break
-            case 'asmaulhusna':
-                result = await fetchJson(`http://api.lolhuman.xyz/api/asmaulhusna?apikey=${apikey}`)
-                result = result.result
-                text = `\`No        :\` *${result.index}*\n`
-                text += `\`Latin     :\` *${result.latin}*\n`
-                text += `\`Arab      :\` *${result.ar}*\n`
-                text += `\`Indonesia :\` *${result.id}*\n`
-                text += `\`English   :\` *${result.en}*`
-                await reply(text)
-                break
-            case 'kisahnabi':
-                if (args.length == 0) return reply(`Example: ${prefix + command} Muhammad`)
-                query = args.join(" ")
-                result = await fetchJson(`http://api.lolhuman.xyz/api/kisahnabi/${query}?apikey=${apikey}`)
-                result = result.result
-                text = `\`Name   :\` ${result.name}\n`
-                text += `\`Lahir  :\` ${result.thn_kelahiran}\n`
-                text += `\`Umur   :\` ${result.age}\n`
-                text += `\`Tempat :\` ${result.place}\n`
-                text += `\`Story  :\`\n${result.story}`
-                await reply(text)
-                break
-            case 'jadwalsholat':
-                if (args.length == 0) return reply(`Example: ${prefix + command} Yogyakarta`)
-                daerah = args.join(" ")
-                result = await fetchJson(`http://api.lolhuman.xyz/api/sholat/${daerah}?apikey=${apikey}`)
-                result = result.result
-                text = `\`Wilayah :\` *${result.wilayah}*\n`
-                text += `\`Tanggal :\` *${result.tanggal}*\n`
-                text += `\`Sahur   :\` *${result.sahur}*\n`
-                text += `\`Imsak   :\` *${result.imsak}*\n`
-                text += `\`Subuh   :\` *${result.subuh}*\n`
-                text += `\`Terbit  :\` *${result.terbit}*\n`
-                text += `\`Dhuha   :\` *${result.dhuha}*\n`
-                text += `\`Dzuhur  :\` *${result.dzuhur}*\n`
-                text += `\`Ashar   :\` *${result.ashar}*\n`
-                text += `\`Maghrib :\` *${result.imsak}*\n`
-                text += `\`Isya    :\` *${result.isya}*`
-                await reply(text)
-                break
-
                 // Downloader //
             case 'ytplay':
-                if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
+                if (args.length == 0) return reply(`Exemplo: ${prefix + command} kurumi`)
                 query = args.join(" ")
                 result = await fetchJson(`http://api.lolhuman.xyz/api/ytplay2?apikey=${apikey}&query=${query}`)
                 result = result.result
                 await lol.replyWithPhoto(result.thumbnail, { caption: result.title })
                 break
             case 'ytsearch':
-                if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
+                if (args.length == 0) return reply(`Exemplo: ${prefix + command} Arcade`)
                 try {
                     query = args.join(" ")
                     result = await fetchJson(`http://api.lolhuman.xyz/api/ytsearch?apikey=${apikey}&query=${query}`)
                     hasil = result.result.slice(0, 3)
                     hasil.forEach(async(res) => {
-                        caption = `\`❖ Title     :\` *${res.title}*\n`
+                        caption = `\`❖ Título     :\` *${res.title}*\n`
                         caption += `\`❖ Link      :\`* https://www.youtube.com/watch?v=${res.videoId} *\n`
-                        caption += `\`❖ Published :\` *${res.published}*\n`
-                        caption += `\`❖ Views    :\` *${res.views}*\n`
+                        caption += `\`❖ Publicados :\` *${res.published}*\n`
+                        caption += `\`❖ Visualizações    :\` *${res.views}*\n`
                         await lol.replyWithPhoto({ url: res.thumbnail }, { caption: caption, parse_mode: "Markdown" })
                     })
                 } catch (e) {
@@ -177,72 +102,72 @@ bot.on("message", async(lol) => {
                 }
                 break
             case 'ytmp3':
-                if (args.length == 0) return reply(`Example: ${prefix + command} https://www.youtube.com/watch?v=qZIQAk-BUEc`)
+                if (args.length == 0) return reply(`Exemplo: ${prefix + command} https://www.youtube.com/watch?v=qZIQAk-BUEc`)
                 ini_link = args[0]
                 result = await fetchJson(`http://api.lolhuman.xyz/api/ytaudio?apikey=${apikey}&url=${ini_link}`)
                 result = result.result
-                caption = `\`❖ Title    :\` *${result.title}*\n`
-                caption += `\`❖ Uploader :\` *${result.uploader}*\n`
-                caption += `\`❖ Duration :\` *${result.duration}*\n`
-                caption += `\`❖ View     :\` *${result.view}*\n`
-                caption += `\`❖ Like     :\` *${result.like}*\n`
-                caption += `\`❖ Dislike  :\` *${result.dislike}*\n`
-                caption += `\`❖ Size     :\` *${result.link[3].size}*`
+                caption = `\`❖ Título    :\` *${result.title}*\n`
+                caption += `\`❖ Carregador :\` *${result.uploader}*\n`
+                caption += `\`❖ Duração :\` *${result.duration}*\n`
+                caption += `\`❖ Visualizar     :\` *${result.view}*\n`
+                caption += `\`❖ Lim     :\` *${result.like}*\n`
+                caption += `\`❖ Deslike  :\` *${result.dislike}*\n`
+                caption += `\`❖ Tamanho     :\` *${result.link[3].size}*`
                 await lol.replyWithPhoto({ url: result.thumbnail }, { caption: caption, parse_mode: "Markdown" })
-                if (Number(result.link[3].size.split(` MB`)[0]) >= 50.00) return reply(`Sorry the bot cannot send more than 50 MB!`)
+                if (Number(result.link[3].size.split(` MB`)[0]) >= 50.00) return reply(`Desculpe, o bot não pode enviar mais de 50 MB!`)
                 await lol.replyWithAudio({ url: result.link[3].link }, { title: result.title, thumb: result.thumbnail })
                 break
             case 'ytmp4':
-                if (args.length == 0) return reply(`Example: ${prefix + command} https://www.youtube.com/watch?v=qZIQAk-BUEc`)
+                if (args.length == 0) return reply(`Exemplo: ${prefix + command} https://www.youtube.com/watch?v=qZIQAk-BUEc`)
                 ini_link = args[0]
                 result = await fetchJson(`http://api.lolhuman.xyz/api/ytvideo?apikey=${apikey}&url=${ini_link}`)
                 result = result.result
-                caption = `\`❖ Title    :\` *${result.title}*\n`
+                caption = `\`❖ Título    :\` *${result.title}*\n`
                 caption += `\`❖ Uploader :\` *${result.uploader}*\n`
-                caption += `\`❖ Duration :\` *${result.duration}*\n`
-                caption += `\`❖ View     :\` *${result.view}*\n`
+                caption += `\`❖ Duração :\` *${result.duration}*\n`
+                caption += `\`❖ Visualizar     :\` *${result.view}*\n`
                 caption += `\`❖ Like     :\` *${result.like}*\n`
-                caption += `\`❖ Dislike  :\` *${result.dislike}*\n`
-                caption += `\`❖ Size     :\` *${result.link[3].size}*`
+                caption += `\`❖ Deslike  :\` *${result.dislike}*\n`
+                caption += `\`❖ Tamanho     :\` *${result.link[3].size}*`
                 await lol.replyWithPhoto({ url: result.thumbnail }, { caption: caption, parse_mode: "Markdown" })
-                if (Number(result.link[0].size.split(` MB`)[0]) >= 50.00) return reply(`Sorry the bot cannot send more than 50 MB!`)
+                if (Number(result.link[0].size.split(` MB`)[0]) >= 50.00) return reply(`Desculpe, o bot não pode enviar mais de 50 MB!`)
                 await lol.replyWithVideo({ url: result.link[0].link }, { thumb: result.thumbnail })
                 break
             case 'tiktoknowm':
-                if (args.length == 0) return reply(`Example: ${prefix + command} https://vt.tiktok.com/ZSwWCk5o/`)
+                if (args.length == 0) return reply(`Exemplo: ${prefix + command} https://vt.tiktok.com/ZSwWCk5o/`)
                 url = args[0]
                 url = `http://api.lolhuman.xyz/api/tiktok?apikey=${apikey}&url=${url}`
                 result = await fetchJson(url)
                 await lol.replyWithVideo({ url: result.result.link })
                 break
             case 'tiktokmusic':
-                if (args.length == 0) return reply(`Example: ${prefix + command} https://vt.tiktok.com/ZSwWCk5o/`)
+                if (args.length == 0) return reply(`Exemplo: ${prefix + command} https://vt.tiktok.com/ZSwWCk5o/`)
                 ini_link = args[0]
                 await lol.replyWithAudio({ url: `http://api.lolhuman.xyz/api/tiktokmusic?apikey=${apikey}&url=${ini_link}` })
                 break
             case 'spotify':
-                if (args.length == 0) return reply(`Example: ${prefix + command} https://open.spotify.com/track/0ZEYRVISCaqz5yamWZWzaA`)
+                if (args.length == 0) return reply(`Exemplo: ${prefix + command} https://open.spotify.com/track/0ZEYRVISCaqz5yamWZWzaA`)
                 url = args[0]
                 result = await fetchJson(`http://api.lolhuman.xyz/api/spotify?apikey=${apikey}&url=${url}`)
                 result = result.result
-                caption = `\`❖ Title      :\` *${result.title}*\n`
-                caption += `\`❖ Artists    :\` *${result.artists}*\n`
-                caption += `\`❖ Duration   :\` *${result.duration}*\n`
-                caption += `\`❖ Popularity :\` *${result.popularity}*`
+                caption = `\`❖ Título      :\` *${result.title}*\n`
+                caption += `\`❖ Artistas    :\` *${result.artists}*\n`
+                caption += `\`❖ Duração   :\` *${result.duration}*\n`
+                caption += `\`❖ Popularidade :\` *${result.popularity}*`
                 await lol.replyWithPhoto({ url: result.thumbnail }, { caption: caption, parse_mode: "Markdown" })
                 await lol.replyWithAudio({ url: result.link }, { title: result.title, thumb: result.thumbnail })
                 break
             case 'spotifysearch':
-                if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
+                if (args.length == 0) return reply(`Exemplo: ${prefix + command} Arcade`)
                 try {
                     query = args.join(" ")
                     result = await fetchJson(`http://api.lolhuman.xyz/api/spotifysearch?apikey=${apikey}&query=${query}`)
                     hasil = result.result.slice(0, 3)
                     hasil.forEach(async(res) => {
-                        caption = `\`❖ Title     :\` *${res.title}*\n`
-                        caption += `\`❖ Artists   :\` *${res.artists}*\n`
+                        caption = `\`❖ Título     :\` *${res.title}*\n`
+                        caption += `\`❖ Artistas   :\` *${res.artists}*\n`
                         caption += `\`❖ Link      :\`* ${res.link} *\n`
-                        caption += `\`❖ Duration  :\` *${res.duration}*\n`
+                        caption += `\`❖ Duração  :\` *${res.duration}*\n`
                         await reply(caption)
                     })
                 } catch (e) {
@@ -250,53 +175,25 @@ bot.on("message", async(lol) => {
                 }
                 break
             case 'jooxplay':
-                if (args.length == 0) return reply(`Example: ${prefix + command} Melukis Senja`)
+                if (args.length == 0) return reply(`Exemplo: ${prefix + command} Arcade`)
                 query = args.join(" ")
                 result = await fetchJson(`http://api.lolhuman.xyz/api/jooxplay?apikey=${apikey}&query=${query}`)
                 result = result.result
-                caption = `\`❖ Title    :\` *${result.info.song}*\n`
-                caption += `\`❖ Artists  :\` *${result.info.singer}*\n`
-                caption += `\`❖ Duration :\` *${result.info.duration}*\n`
-                caption += `\`❖ Album    :\` *${result.info.album}*\n`
+                caption = `\`❖ Título    :\` *${result.info.song}*\n`
+                caption += `\`❖ Artistas  :\` *${result.info.singer}*\n`
+                caption += `\`❖ Duração :\` *${result.info.duration}*\n`
+                caption += `\`❖ Álbum    :\` *${result.info.album}*\n`
                 caption += `\`❖ Uploaded :\` *${result.info.date}*\n`
-                caption += `\`❖ Lirik    :\`\n ${result.lirik}`
+                caption += `\`❖ Letra da música    :\`\n ${result.lirik}`
                 await lol.replyWithPhoto({ url: result.image }, { caption: caption, parse_mode: "Markdown" })
                 await lol.replyWithAudio({ url: result.link[0].link }, { title: result.info.song, thumb: result.image })
                 break
-            case 'zippyshare':
-                if (args.length == 0) return reply(`Example: ${prefix + command} https://www51.zippyshare.com/v/5W0TOBz1/file.html`)
-                url = args[0]
-                url = await fetchJson(`http://api.lolhuman.xyz/api/zippyshare?apikey=${apikey}&url=${url}`)
-                url = url.result
-                text = `\`❖ File Name    :\` *${url.name_file}*\n`
-                text += `\`❖ Size         :\` *${url.size}*\n`
-                text += `\`❖ Date Upload  :\` *${url.date_upload}*\n`
-                text += `\`❖ Download Url :\` *${url.download_url}*`
-                await reply(text)
-                break
             case 'pinterest':
-                if (args.length == 0) return reply(`Example: ${prefix + command} loli kawaii`)
+                if (args.length == 0) return reply(`Exemplo: ${prefix + command} wallpaper`)
                 query = args.join(" ")
                 url = await fetchJson(`http://api.lolhuman.xyz/api/pinterest?apikey=${apikey}&query=${query}`)
                 url = url.result
                 await lol.replyWithPhoto({ url: url })
-                break
-            case 'pinterestdl':
-                if (args.length == 0) return reply(`Example: ${prefix + command} https://id.pinterest.com/pin/696580267364426905/`)
-                url = args[0]
-                url = await fetchJson(`http://api.lolhuman.xyz/api/pinterestdl?apikey=${apikey}&url=${url}`)
-                url = url.result["736x"]
-                await lol.replyWithPhoto({ url: url })
-                break
-            case 'pixiv':
-                if (args.length == 0) return reply(`Example: ${prefix + command} loli kawaii`)
-                query = args.join(" ")
-                await lol.replyWithPhoto({ url: `http://api.lolhuman.xyz/api/pixiv?apikey=${apikey}&query=${query}` })
-                break
-            case 'pixivdl':
-                if (args.length == 0) return reply(`Example: ${prefix + command} 63456028`)
-                pixivid = args[0]
-                await lol.replyWithPhoto({ url: `http://api.lolhuman.xyz/api/pixivdl/${pixivid}?apikey=${apikey}` })
                 break
             default:
         }
@@ -310,14 +207,14 @@ bot.launch()
 bot.telegram.getMe().then((getme) => {
     itsPrefix = (prefix != "") ? prefix : "No Prefix"
     console.log(clc.greenBright(' ===================================================='))
-    console.log(clc.greenBright(" │ + Owner    : " + owner))
-    console.log(clc.greenBright(" │ + Bot Name : " + getme.first_name))
-    console.log(clc.greenBright(" │ + Version  : " + version))
-    console.log(clc.greenBright(" │ + Host     : " + os.hostname()))
-    console.log(clc.greenBright(" │ + Platfrom : " + os.platform()))
-    console.log(clc.greenBright(" │ + Core     : " + os.cpus()[0].model))
-    console.log(clc.greenBright(" │ + Speed    : " + os.cpus()[0].speed + " MHz"))
-    console.log(clc.greenBright(" │ + Core     : " + os.cpus().length))
+    console.log(clc.greenBright(" │ + Proprietário    : " + owner))
+    console.log(clc.greenBright(" │ + Nome do Bot : " + getme.first_name))
+    console.log(clc.greenBright(" │ + Versão  : " + version))
+    console.log(clc.greenBright(" │ + Hospedeiro     : " + os.hostname()))
+    console.log(clc.greenBright(" │ + Plataformas : " + os.platform()))
+    console.log(clc.greenBright(" │ + Testemunho     : " + os.cpus()[0].model))
+    console.log(clc.greenBright(" │ + Velocidade    : " + os.cpus()[0].speed + " MHz"))
+    console.log(clc.greenBright(" │ + Testemunho     : " + os.cpus().length))
     console.log(clc.greenBright(` │ + RAM      : ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB / ${Math.round(os.totalmem / 1024 / 1024)} MB`))
     console.log(clc.greenBright(" │ + Prefix   : " + itsPrefix))
     console.log(clc.greenBright(' ===================================================='))
