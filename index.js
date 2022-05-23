@@ -81,7 +81,7 @@ bot.on("message", async(lol) => {
                 query = args.join(" ")
                 result = await fetchJson(`http://api.lolhuman.xyz/api/ytplay2?apikey=${apikey}&query=${query}`)
                 result = result.result
-                await lol.replyWithPhoto(result.thumbnail, { caption: result.title })
+                await lol.replyWithAudio({audio: link.mp3}, { caption: result.title })
                 break
             case 'ytsearch':
                 if (args.length == 0) return reply(`Exemplo: ${prefix + command} Arcade`)
